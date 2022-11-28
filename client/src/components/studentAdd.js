@@ -22,9 +22,10 @@ function Add(props) {
 
     const dataSubmit = (e) => {
         e.preventDefault();
+        data.loginid = props.loginid
         // console.log(data)
-        const { name, phone, email, hobbies } = data
-        if (name && phone && email && hobbies) {
+        const { name, phone, email, hobbies, loginid } = data
+        if (name && phone && email && hobbies && loginid) {
             axios.post(`${URL}/add`, data)
                 .then(res => {
                     toast(res.data.message)

@@ -15,12 +15,22 @@ mongoose.connect(DB, {
     console.log("Db not connected")
 })
 
+const loginSchema = new mongoose.Schema({
+    username: String,
+    email: String,
+    password: String
+})
+
 const studentSchema = new mongoose.Schema({
     name: String,
     phone: String,
     email: String,
-    hobbies: String
+    hobbies: String,
+    loginid: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Login' }
+    ]
 })
 
 // models
+export const Login = new mongoose.model("Login", loginSchema)
 export const Student = new mongoose.model("Student", studentSchema)

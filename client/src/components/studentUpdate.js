@@ -16,7 +16,7 @@ function Update(props) {
     const counts = props.count
 
     React.useEffect(() => {
-        console.log("test", id)
+        // console.log("test", id)
         clearData()
         if (id) {
             axios.post(`${URL}/studentOne`, { id: id }).then((response) => {

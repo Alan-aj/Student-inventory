@@ -6,7 +6,10 @@ import Register from "./components/register";
 import "./App.css"
 
 function App() {
-  const [loginId,setLoginid] = React.useState("1")
+  const [loginId,setLoginid] = React.useState(null)
+  React.useEffect(()=>{
+    setLoginid(localStorage.getItem("loginId"))
+  },[loginId])
   return (
     <BrowserRouter>
       <Routes>

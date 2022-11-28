@@ -4,7 +4,7 @@ import axios from "axios";
 import { URL } from "./data";
 import Add from './studentAdd';
 import Update from "./studentUpdate";
-import {ToastContainer} from "react-toastify"
+import { toast } from 'react-toastify';
 
 function Home(props) {
     const [data, setData] = React.useState([]);
@@ -12,13 +12,33 @@ function Home(props) {
     const [modalUpdate, setModalUpdate] = React.useState(false);
     const [id, setId] = React.useState("")
     const [count, setCount] = React.useState(false)
+    const [login, setLogin] = React.useState("")
+    const [del, setDel] = React.useState(false)
 
     React.useEffect(() => {
-        axios.get(`${URL}/student`).then((response) => {
+        const loginid = localStorage.getItem("loginId")
+        setLogin(loginid)
+        // console.log(login)
+        axios.post(`${URL}/student`, {loginid: loginid}).then((response) => {
             // console.log(response.data)
             setData(response.data);
+            setDel(false)
         });
-    }, [modalAdd, modalUpdate]);
+    }, [modalAdd, modalUpdate, del]);
+
+    const logOut = () => {
+        localStorage.removeItem("loginId")
+        // localStorage.clear()
+        props.setLoginid(null)
+    }
+
+    const deleteStudent = (id)=>{
+        axios.post(`${URL}/delete`, { id: id })
+        .then(res => {
+            toast(res.data.message)
+            setDel(true)
+        })
+    }
 
     return (
         <div className='body-div'>
@@ -26,7 +46,7 @@ function Home(props) {
             <div className='table-div'>
                 <div>
                     <Button variant="success" className='bt' onClick={() => setModalAdd(true)}>Add new</Button>
-                    <Button variant="primary" className='bt'>Logout</Button>
+                    <Button variant="primary" className='bt' onClick={logOut}>Logout</Button>
                 </div>
                 <Table bordered hover>
                     <thead>
@@ -58,7 +78,7 @@ function Home(props) {
                                         }}>Update</Button>
                                     </td>
                                     <td>
-                                        <Button variant="danger">Delete</Button>
+                                        <Button variant="danger" onClick={()=>deleteStudent(post._id)}>Delete</Button>
                                     </td>
                                 </tr>
                             ))
@@ -68,7 +88,7 @@ function Home(props) {
                 </Table>
             </div>
             <Add
-                show={modalAdd}
+                show={modalAdd} loginid={login}
                 onHide={() => setModalAdd(false)}
             />
             <Update
@@ -77,7 +97,6 @@ function Home(props) {
                 id={id}
                 count={count ? 1 : 0}
             />
-            <ToastContainer />
         </div>
     )
 }
