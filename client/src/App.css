@@ -1,0 +1,105 @@
+.table-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+h1 {
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+thead {
+    background-color: blanchedalmond;
+    text-align: center;
+}
+
+
+tbody {
+    background-color: ghostwhite;
+}
+
+.body-div {
+    height: 100vh;
+}
+
+.table-bt {
+    text-align: center;
+    width: 0px;
+}
+
+.bt {
+    margin: 5px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-input {
+    display: block;
+    margin: 5px;
+}
+
+.modal-form {
+    text-align: center;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+}
+
+label {
+    float: left;
+    padding-top: 12px;
+}
+
+input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input[type=button] {
+    background-color: coral;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.modal-submit {
+    margin: 5px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(0, 119, 0);
+}
+
+input[type=button]:hover {
+    background-color: chocolate;
+}
+
+.modal-bt{
+    width: 30%;
+    margin-left: 2px;
+    margin-right: 2px;
+}
